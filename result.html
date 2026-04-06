@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and viewport for mobile responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Page title displayed in browser tab -->
+    <title>Prediction Result</title>
+    
+    <!-- CSS styles for layout and design -->
+    <style>
+        /* Apply basic font and center content on the page */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+            margin: 0;
+        }
+        
+        /* Container for the prediction result, with centered text */
+        .result-container {
+            text-align: center;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        /* Style for the main header text */
+        .result-container h1 {
+            font-size: 2rem;
+            color: #4caf50;
+        }
+        
+        /* Style for paragraph text inside the container */
+        .result-container p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+        
+        /* Highlight the predicted result in blue color */
+        .result {
+            font-weight: bold;
+            color: #2196f3;
+        }
+        
+        /* Style for the link to go back to the home page */
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #2196f3;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+        
+        /* Add underline on hover for the back link */
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container for prediction result -->
+    <div class="result-container">
+        <!-- Main header text for result page -->
+        <h1>Prediction Result</h1>
+        
+        <!-- Display the prediction result dynamically from the server -->
+        <p>The predicted risk level is: <span class="result">{{ prediction }}</span></p>
+        
+        <!-- Link to navigate back to the home page -->
+        <a href="/" class="back-link">Back to Home</a>
+    </div>
+</body>
+</html>

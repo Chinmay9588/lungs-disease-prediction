@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Set character encoding and viewport for responsiveness -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title of the page -->
+    <title>Cancer Prediction</title>
+    
+    <!-- CSS styling for layout and appearance -->
+    <style>
+        /* Reset default margins, padding, and set box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Set background, font, and align content to center of page */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f7f6;
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Disable body scrolling */
+        }
+        
+        /* Container styling with max width/height and scroll if content exceeds */
+        .container {
+            width: 100%;
+            max-width: 500px;
+            max-height: 90vh; /* Ensures the container doesn’t overflow vertically */
+            overflow-y: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        /* Title styling */
+        h1 {
+            color: #333333;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+        
+        /* Form label styling */
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #555555;
+        }
+        
+        /* Input field styling */
+        input[type="number"] {
+            width: calc(100% - 22px); /* Ensures it aligns with container padding */
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            font-size: 1em;
+            color: #333;
+        }
+        
+        /* Focus effect for input fields */
+        input[type="number"]:focus {
+            border-color: #3399ff;
+            outline: none;
+            box-shadow: 0px 0px 5px rgba(51, 153, 255, 0.3);
+        }
+        
+        /* Submit button styling */
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #3399ff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Hover effect for submit button */
+        button[type="submit"]:hover {
+            background-color: #287bb5;
+        }
+        
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.5em;
+            }
+            button[type="submit"] {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Container for form content -->
+    <div class="container">
+        <!-- Main title of the page -->
+        <h1>Cancer Level Prediction</h1>
+        
+        <!-- Prediction Result Display -->
+        {% if prediction_text %}
+        <div style="padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #e0f7fa; color: #006064; font-size: 1.2em; font-weight: bold;">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+        
+        <!-- Prediction form that sends data via POST to the '/predict' route -->
+        <form id="predictionForm" method="POST" action="/predict">
+            <!-- Age input field -->
+            <label for="Age">Age:</label>
+            <input type="number" id="Age" name="Age" required>
+
+            <!-- Gender input field -->
+            <label for="Gender">Gender:</label>
+            <input type="number" id="Gender" name="Gender" required>
+
+            <!-- Air Pollution input field -->
+            <label for="AirPollution">Air Pollution:</label>
+            <input type="number" id="AirPollution" name="AirPollution" required>
+
+            <!-- Alcohol Use input field -->
+            <label for="Alcoholuse">Alcohol Use:</label>
+            <input type="number" id="Alcoholuse" name="Alcoholuse" required>
+
+            <!-- Dust Allergy input field -->
+            <label for="DustAllergy">Dust Allergy:</label>
+            <input type="number" id="DustAllergy" name="DustAllergy" required>
+
+            <!-- Occupational Hazards input field -->
+            <label for="OccuPationalHazards">Occupational Hazards:</label>
+            <input type="number" id="OccuPationalHazards" name="OccuPationalHazards" required>
+
+            <!-- Genetic Risk input field -->
+            <label for="GeneticRisk">Genetic Risk:</label>
+            <input type="number" id="GeneticRisk" name="GeneticRisk" required>
+
+            <!-- Chronic Lung Disease input field -->
+            <label for="chronicLungDisease">Chronic Lung Disease:</label>
+            <input type="number" id="chronicLungDisease" name="chronicLungDisease" required>
+
+            <!-- Balanced Diet input field -->
+            <label for="BalancedDiet">Balanced Diet:</label>
+            <input type="number" id="BalancedDiet" name="BalancedDiet" required>
+
+            <!-- Obesity input field -->
+            <label for="Obesity">Obesity:</label>
+            <input type="number" id="Obesity" name="Obesity" required>
+
+            <!-- Smoking input field -->
+            <label for="Smoking">Smoking:</label>
+            <input type="number" id="Smoking" name="Smoking" required>
+
+            <!-- Passive Smoker input field -->
+            <label for="PassiveSmoker">Passive Smoker:</label>
+            <input type="number" id="PassiveSmoker" name="PassiveSmoker" required>
+
+            <!-- Chest Pain input field -->
+            <label for="ChestPain">Chest Pain:</label>
+            <input type="number" id="ChestPain" name="ChestPain" required>
+
+            <!-- Coughing of Blood input field -->
+            <label for="CoughingofBlood">Coughing of Blood:</label>
+            <input type="number" id="CoughingofBlood" name="CoughingofBlood" required>
+
+            <!-- Fatigue input field -->
+            <label for="Fatigue">Fatigue:</label>
+            <input type="number" id="Fatigue" name="Fatigue" required>
+
+            <!-- Weight Loss input field -->
+            <label for="WeightLoss">Weight Loss:</label>
+            <input type="number" id="WeightLoss" name="WeightLoss" required>
+
+            <!-- Shortness of Breath input field -->
+            <label for="ShortnessofBreath">Shortness of Breath:</label>
+            <input type="number" id="ShortnessofBreath" name="ShortnessofBreath" required>
+
+            <!-- Wheezing input field -->
+            <label for="Wheezing">Wheezing:</label>
+            <input type="number" id="Wheezing" name="Wheezing" required>
+
+            <!-- Swallowing Difficulty input field -->
+            <label for="SwallowingDifficulty">Swallowing Difficulty:</label>
+            <input type="number" id="SwallowingDifficulty" name="SwallowingDifficulty" required>
+
+            <!-- Clubbing of Finger Nails input field -->
+            <label for="ClubbingofFingerNails">Clubbing of Finger Nails:</label>
+            <input type="number" id="ClubbingofFingerNails" name="ClubbingofFingerNails" required>
+
+            <!-- Frequent Cold input field -->
+            <label for="FrequentCold">Frequent Cold:</label>
+            <input type="number" id="FrequentCold" name="FrequentCold" required>
+
+            <!-- Dry Cough input field -->
+            <label for="DryCough">Dry Cough:</label>
+            <input type="number" id="DryCough" name="DryCough" required>
+
+            <!-- Snoring input field -->
+            <label for="Snoring">Snoring:</label>
+            <input type="number" id="Snoring" name="Snoring" required>
+
+            <!-- Submit button to make prediction -->
+            <button type="submit" name="submit">Predict</button>
+        </form>
+    </div>
+</body>
+</html>
